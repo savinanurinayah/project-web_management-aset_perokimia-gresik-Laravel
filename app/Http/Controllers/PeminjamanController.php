@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\AsetModel;
+use App\Models\LokasiModel;
+use Illuminate\Support\Str;
 use App\Models\PegawaiModel;
 use Illuminate\Http\Request;
 use App\Models\DepartemenModel;
-use App\Models\LokasiModel;
 use App\Models\PeminjamanModel;
 use Illuminate\Support\Facades\DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PeminjamanController extends Controller
 {
@@ -28,7 +30,7 @@ class PeminjamanController extends Controller
             DB::raw("(SELECT tbl_peminjaman.status FROM tbl_peminjaman WHERE tbl_peminjaman.id_aset = tbl_aset.id_aset
                 AND tbl_peminjaman.status NOT IN ('DITOLAK', 'SELESAI')
                 AND tbl_aset.aktif='y' LIMIT 1) as status_peminjaman_pegawai"))
-        ->where('tbl_aset.nama_aset', 'like', '%'.strtolower($q).'%')
+        ->where('tbl_aset.kode', 'like', '%'.strtolower($q).'%')
         ->where('tbl_lokasi_aset.nama', 'like', '%'.strtolower($lokasi).'%')
         ->where(['tbl_aset.aktif' => 'y'])->get();
         return view('index', [
@@ -79,6 +81,7 @@ class PeminjamanController extends Controller
 
     public function post_tambah(Request $request)
     {
+        $qr_code = Str::random(20);
         $id_aset = $request->id_aset;
         $nip_pegawai = session('userdata')['nip_pegawai'];
         $peminjaman = AsetModel::where(['id_aset' => $id_aset])
@@ -93,6 +96,7 @@ class PeminjamanController extends Controller
         PeminjamanModel::create([
             'id_aset' => $id_aset,
             'id_pegawai' => $nip_pegawai,
+            'qr_code' => $qr_code,
             'tanggal_peminjaman' => $request->tanggal_peminjaman,
             'deadline_pengembalian' => $request->deadline_pengembalian,
             'tanggal_pengembalian' => $request->tanggal_pengembalian,
@@ -154,4 +158,5 @@ class PeminjamanController extends Controller
             ->where(['tbl_aset.aktif' => 'y'])->get()
         ]);
     }
+
 }

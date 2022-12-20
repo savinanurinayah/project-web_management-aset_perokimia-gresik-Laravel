@@ -49,6 +49,7 @@
                                         <th>No.</th>
                                         <th>Action</th>
                                         <th>Kode</th>
+                                        <th>QR Code</th>
                                         <th>Nama</th>
                                         <th>Kategori</th>
                                         <th>Kondisi</th>
@@ -72,6 +73,8 @@
                                                     class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                             </td>
                                             <td>{{ $aset['kode'] }}</td>
+                                            <td><img src="https://chart.googleapis.com/chart?chs=240x240&cht=qr&chl={{ $aset['qr_code'] }}" alt="Kode QR"
+                                                class="image-profile table-responsive-sm" width="100px"></td>
                                             <td>{{ $aset['nama_aset'] }}</td>
                                             <td>{{ $aset['nama_kategori'] }}</td>
                                             <td>{{ $aset['kondisi'] }}</td>
@@ -80,7 +83,7 @@
                                             </td>
                                             <td>
                                                 <img class="img-thumbnail"
-                                                    src="{{ asset('storage/public/' . $aset['gambar']) }}" alt=""
+                                                    src="{{ asset('storage/' . $aset['gambar']) }}" alt=""
                                                     width="50px">
                                             </td>
                                             <td>{{ $aset['created_at'] }}</td>

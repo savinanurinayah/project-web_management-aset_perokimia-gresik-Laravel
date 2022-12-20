@@ -41,7 +41,7 @@
                                     <form action="{{ url('login') }}" method="POST" class="user">
                                         @csrf
                                         <div class="mb-3 text-center">
-                                            <img class="img-fluid img-thumbnail" src="{{ asset('backend/img/logo/management-aset-login.png') }}"
+                                            <img class="img-fluid img-thumbnail" src="{{ asset('backend/img/logo/logo1.png') }}"
                                                 alt="" width="360px" height="160px">
                                         </div>
                                         <div class="form-group">

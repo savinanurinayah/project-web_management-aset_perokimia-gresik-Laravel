@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
             <img src="{{ asset('backend/') }}/img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3 text-dark">Manajemen Aset</div>
+        <div class="sidebar-brand-text mx-3 text-dark">Peminjaman Aset</div>
     </div>
     <hr class="sidebar-divider my-0">
 

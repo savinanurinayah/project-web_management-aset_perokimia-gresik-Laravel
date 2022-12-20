@@ -19,6 +19,7 @@
         <thead>
             <tr>
                 <th>No.</th>
+                <th>QR Code</th>
                 <th>Nama</th>
                 <th>Kategori</th>
                 <th>Gambar</th>
@@ -39,6 +40,8 @@
             @foreach ($asets as $aset)
                 <tr>
                     <td>{{ $no++ }}</td>
+                    <td><img src="https://chart.googleapis.com/chart?chs=240x240&cht=qr&chl={{ $aset->qr_code }}" alt="Kode QR"
+                        class="image-profile table-responsive-sm" width="100px"></td>
                     <td>{{ $aset['nama_aset'] }} </td>
                     <td>{{ $aset['nama_kategori'] }}</td>
                     <td>

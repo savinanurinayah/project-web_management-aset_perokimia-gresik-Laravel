@@ -5,7 +5,6 @@
         <div class="section__content section__content--p30">
             <div class="container-fluid">
                 <h2>Data Peminjaman</h2>
-                <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <form action="" method="get" class="form-horizontal">
@@ -60,6 +59,7 @@
                                         <th>Konfirmasi</th>
                                         <th>No.</th>
                                         <th>Status</th>
+                                        <th>QR Code</th>
                                         <th>Nama</th>
                                         <th>Kategori</th>
                                         <th>Gambar</th>
@@ -85,7 +85,7 @@
                                                 '" data-status="diterima" data-href="' .
                                                 url('peminjaman/update?id=' . $peminjaman['id_peminjaman'] . '&status=diterima') .
                                                 '" class="btn btn-success btn-sm btn-terima">Diterima</button>
-                                                                                                                                                                                                        <button data-id="' .
+                                                <button data-id="' .
                                                 $peminjaman['id_peminjaman'] .
                                                 '" data-status="ditolak" data-href="' .
                                                 url('peminjaman/update?id=' . $peminjaman['id_peminjaman'] . '&status=ditolak') .
@@ -109,12 +109,14 @@
                                                 <span
                                                     class="badge {{ $badge }}">{{ $peminjaman['status_peminjaman'] }}</span>
                                             </td>
+                                            <td><img src="https://chart.googleapis.com/chart?chs=240x240&cht=qr&chl={{ $peminjaman->qr_code }}" alt="Kode QR"
+                                                class="image-profile table-responsive-sm" width="100px"></td>
                                             <td>{{ $peminjaman['nama_aset'] }}</td>
                                             <td>{{ $peminjaman['nama_kategori'] }}</td>
                                             <td>
                                                 @if ($peminjaman['gambar'])
                                                     <img class="img-thumbnail"
-                                                        src="{{ asset('storage/public/' . $peminjaman['gambar']) }}"
+                                                        src="{{ asset('storage/' . $peminjaman['gambar']) }}"
                                                         alt="" width="50px">
                                                 @endif
                                             </td>

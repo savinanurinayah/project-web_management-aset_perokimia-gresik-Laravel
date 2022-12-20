@@ -4,13 +4,6 @@
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="overview-wrap">
-
-                        </div>
-                    </div>
-                </div>
                 <div class="row m-t-25" style="min-height: 500px;">
                     <div class="col-lg-12">
                         @if (session('error'))
@@ -28,6 +21,7 @@
                                 <thead class="thead-light">
                                     <tr class="text-center">
                                         <th>No.</th>
+                                        <th>QR Code</th>
                                         <th>Nama</th>
                                         <th>Kategori</th>
                                         <th>Tanggal Peminjaman</th>
@@ -42,6 +36,8 @@
                                     @foreach ($asets as $aset)
                                         <tr class="text-center">
                                             <td>{{ $no++ }}</td>
+                                            <td><img src="https://chart.googleapis.com/chart?chs=240x240&cht=qr&chl={{ $aset['qr_code'] }}" alt="Kode QR"
+                                                class="image-profile table-responsive-sm" width="100px"></td></td>
                                             <td>{{ $aset['nama_aset'] }}</td>
                                             <td>{{ $aset['nama_kategori'] }}</td>
                                             <td>{{ $aset['tanggal_peminjaman'] }}</td>

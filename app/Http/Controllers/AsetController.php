@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\AsetModel;
 use App\Models\LokasiModel;
+use Illuminate\Support\Str;
 use App\Models\PegawaiModel;
 use Illuminate\Http\Request;
 use App\Models\KategoriModel;
+use Illuminate\Support\Facades\Hash;
 
 class AsetController extends Controller
 {
@@ -64,8 +66,10 @@ class AsetController extends Controller
             $gambar = str_replace('public/', '', $gambar);
         }
 
+        $request->qr_code = $request->kode;
         AsetModel::create([
             'kode' => $request->kode,
+            'qr_code' => $request->qr_code,
             'nama_aset' => $request->nama,
             'id_kategori' => $request->id_kategori,
             'tanggal_pembelian' => $request->tanggal_pembelian,
@@ -112,9 +116,10 @@ class AsetController extends Controller
             $gambar = $request->file('gambar')->store('public/gambar_aset');
             $gambar = str_replace('public/', '', $gambar);
         }
-
+         $request->qr_code = $request->kode;
         $data_aset = [
             'kode' => $request->kode,
+            'qr_code' => $request->qr_code,
             'nama_aset' => $request->nama,
             'id_kategori' => $request->id_kategori,
             'tanggal_pembelian' => $request->tanggal_pembelian,

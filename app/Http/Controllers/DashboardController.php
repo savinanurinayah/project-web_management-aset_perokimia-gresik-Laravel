@@ -20,7 +20,7 @@ class DashboardController extends Controller
             $asets = AsetModel::
             join('tbl_kategori_aset', 'tbl_kategori_aset.id_kategori', '=', 'tbl_aset.id_kategori')
             ->join('tbl_peminjaman', 'tbl_peminjaman.id_aset', '=', 'tbl_aset.id_aset')
-            ->select('tbl_aset.*', 'tbl_kategori_aset.nama as nama_kategori', 'tbl_peminjaman.id as id_peminjaman','tbl_peminjaman.tanggal_peminjaman', 'tbl_peminjaman.tanggal_pengembalian', 'tbl_peminjaman.keperluan', 'tbl_peminjaman.status as status_peminjaman')
+            ->select('tbl_aset.*', 'tbl_kategori_aset.nama as nama_kategori', 'tbl_peminjaman.id as id_peminjaman','tbl_peminjaman.tanggal_peminjaman','tbl_peminjaman.deadline_pengembalian', 'tbl_peminjaman.tanggal_pengembalian', 'tbl_peminjaman.keperluan', 'tbl_peminjaman.status as status_peminjaman')
             ->where(['tbl_aset.aktif' => 'y', 'id_pegawai' => $id_pegawai])->get();
             // dd($asets);
             return view('index', [

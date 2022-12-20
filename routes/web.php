@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsetController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PegawaiController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartemenController;
